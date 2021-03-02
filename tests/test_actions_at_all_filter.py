@@ -53,14 +53,13 @@ def test_complete():
 
     todomvc.toggle('b')
 
-    todomvc.should_have_completed('b')
     todomvc.should_have_active('a', 'c')
+    todomvc.should_have_completed('b')
     todomvc.should_have_items_left(2)
 
 
 def test_activate():
     todomvc.given_opened_with('a', 'b', 'c')
-
     todomvc.toggle('b')
 
     todomvc.toggle('b')

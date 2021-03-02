@@ -1,6 +1,7 @@
 from selene import have
 from selene.support.shared import browser
 
+be_completed = have.css_class('completed')
 
 class TodoMvc:
     def __init__(self):
@@ -48,7 +49,7 @@ class TodoMvc:
         return self
 
     def should_have_completed(self, *todos: str):
-        self.todo_list.filtered_by(have.css_class('completed'))\
+        self.todo_list.filtered_by(be_completed) \
             .should(have.exact_texts(*todos))
         return self
 
