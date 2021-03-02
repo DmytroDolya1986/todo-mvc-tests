@@ -1,7 +1,7 @@
 from todo_mvc_tests.model import todomvc
 
 
-def test_create_first_task():
+def test_create_first_todo():
     todomvc.open()
 
     todomvc.should_be_empty()
@@ -30,7 +30,7 @@ def test_edit():
     todomvc.should_have_items_left(3)
 
 
-def test_edit_by_change_focus():
+def test_edit_by_focus_change():
     todomvc.given_opened_with('a', 'b', 'c')
 
     todomvc.edit_by_focus_change('b', 'b edited')
@@ -60,10 +60,10 @@ def test_complete():
 
 def test_activate():
     todomvc.given_opened_with('a', 'b', 'c')
-    todomvc.toggle('b')
 
     todomvc.toggle('b')
 
+    todomvc.toggle('b')
     todomvc.should_have_active('a', 'b', 'c')
     todomvc.should_have_items_left(3)
 
@@ -109,7 +109,7 @@ def test_delete():
     todomvc.should_have_items_left(2)
 
 
-def test_delete_last_task():
+def test_delete_last_todo():
     todomvc.given_opened_with('a')
 
     todomvc.delete('a')

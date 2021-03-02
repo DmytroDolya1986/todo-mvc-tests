@@ -8,19 +8,19 @@ class TodoMvc:
 
     def open(self):
         browser.open('https://todomvc4tasj.herokuapp.com/')
-        app_loaded = "return $._data($('#clear-completed')[0], 'events')"\
-                     ".hasOwnProperty('click')"
-        browser.should(have.js_returned(True, app_loaded))
+        app_wait = "return $._data($('#clear-completed')[0], 'events')"\
+                   ".hasOwnProperty('click')"
+        browser.should(have.js_returned(True, app_wait))
         return self
 
-    def create(self, *tasks: str):
-        for todo in tasks:
+    def create(self, *todos: str):
+        for todo in todos:
             browser.element('#new-todo').type(todo).press_enter()
         return self
 
-    def given_opened_with(self, *tasks: str):
+    def given_opened_with(self, *todos: str):
         self.open()
-        self.create(*tasks)
+        self.create(*todos)
 
     def should_have(self, *todos: str):
         self.todo_list.should(have.exact_texts(*todos))
@@ -47,14 +47,14 @@ class TodoMvc:
         self.todo_list.element_by(have.exact_text(todo)).element('.toggle').click()
         return self
 
-    def should_have_completed(self, *tasks: str):
+    def should_have_completed(self, *todos: str):
         self.todo_list.filtered_by(have.css_class('completed'))\
-            .should(have.exact_texts(*tasks))
+            .should(have.exact_texts(*todos))
         return self
 
-    def should_have_active(self, *tasks: str):
+    def should_have_active(self, *todos: str):
         self.todo_list.filtered_by(have.no.css_class('completed'))\
-            .should(have.exact_texts(*tasks))
+            .should(have.exact_texts(*todos))
         return self
 
     def toggle_all(self):
