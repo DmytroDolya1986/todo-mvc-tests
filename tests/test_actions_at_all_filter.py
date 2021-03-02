@@ -63,6 +63,8 @@ def test_activate():
     todomvc.toggle('b')
 
     todomvc.toggle('b')
+
+    todomvc.should_have_completed()
     todomvc.should_have_active('a', 'b', 'c')
     todomvc.should_have_items_left(3)
 

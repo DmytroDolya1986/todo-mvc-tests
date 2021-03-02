@@ -54,7 +54,7 @@ class TodoMvc:
         return self
 
     def should_have_active(self, *todos: str):
-        self.todo_list.filtered_by(have.no.css_class('completed'))\
+        self.todo_list.filtered_by(be_completed.not_)\
             .should(have.exact_texts(*todos))
         return self
 
